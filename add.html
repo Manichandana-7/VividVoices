@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <nav class="bg-sky-700 p-6 ">
+            <div class="flex justify-between items-center">
+                <h1 class="text-white text-4xl font-bold">VividVoices</h1>              
+                <ul class="flex gap-25 text-2xl text-white font-bold mr-20">
+                    <li><a href="home.html">BLOGS</a></li>
+                    <li><a href="add.html">ADD</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="flex justify-center items-center m-10">
+        <form onsubmit="addBlog()" class="p-10 border border-gray-200 rounded-lg shadow-md bg-sky-50 space-y-5 w-1/2 h-1/2">
+                <h1 class="font-bold text-2xl text-center text-sky-800">ADDING BLOGS</h1>
+                <label for="title" class="block font-bold mb-2 text-sky-800">Title:</label>
+                <input type="text" placeholder="Enter the title" required id="title" class="border-1 rounded-md w-full p-2 bg-gray-50">
+                <label for="data" class="block mb-2 font-bold text-sky-800">About:</label>
+                <textarea id="data" placeholder="Description of the blog" required class="border-1 rounded-md w-full p-2 mb-5 bg-gray-50" rows="8"></textarea>
+                <label for="image" class="block font-bold mb-2 text-sky-800">Image URL:</label>
+                <input type="text" placeholder="Enter image url" required id="imgurl" class="border-1 rounded-md w-full p-2 bg-gray-50">
+            <center>
+                <button type="submit" class="px-5 py-2 bg-sky-700 text-white rounded-md hover:bg-sky-600">Add</button></center>
+        
+        </form>
+    </div>
+    
+    <script>
+        var count = parseInt(localStorage.getItem("blogCount")) || 0;
+        function addBlog(event) {
+            count += 1; 
+            var name = "Blog" + count;
+            var title = document.getElementById("title").value;
+            var desc = document.getElementById("data").value;
+            var imgurl = document.getElementById("imgurl").value;
+            localStorage.setItem(name + "_title", title);
+            localStorage.setItem(name + "_desc", desc);
+            localStorage.setItem("blogCount", count);
+            localStorage.setItem(name + "_count", 0);
+            localStorage.setItem(name + "_imgurl", imgurl);
+            displayBlogs();
+        }
+    </script>
+</body>
+</html>

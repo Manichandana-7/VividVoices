@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Edit Blog</title>
+</head>
+<body>
+    <div>
+        <nav class="bg-sky-700 p-6 ">
+            <div class="flex justify-between items-center">
+                <h1 class="text-white text-4xl font-bold">VividVoices</h1>              
+                <ul class="flex gap-25 text-2xl text-white font-bold mr-20">
+                    <li><a href="home.html">BLOGS</a></li>
+                    <li><a href="add.html">ADD</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="flex justify-center items-center m-10">
+    <div class="p-10 border border-gray-200 rounded-lg shadow-md bg-sky-50 space-y-5 w-1/2 h-1/2">
+        <h2 class="font-bold text-2xl text-center text-sky-800">EDIT BLOG</h2>
+        <label class="block font-bold mb-2 text-sky-800">Title:</label>
+        <input type="text" id="editTitle" class="border-1 rounded-md w-full p-2 bg-gray-50">
+
+        <label class="block font-bold mb-2 text-sky-800">Description:</label>
+        <textarea id="editDesc" class="border-1 rounded-md w-full p-2 bg-gray-50" rows="8"></textarea>
+        <label class="block font-bold mb-2 text-sky-800">Image URL:</label>
+        <input type="text" id="editImgurl" class="border-1 rounded-md w-full p-2 bg-gray-50" >
+        <button onclick="saveChanges()" class="w-full mt-4 p-2 bg-sky-800 text-white rounded-md hover:bg-sky-600">Save Changes</button>
+        <button onclick="cancelEdit()" class="w-full mt-2 p-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">Cancel</button>
+    </div>
+</div>
+
+    <script>
+        window.onload = function() {
+            var blogId = localStorage.getItem("selectedBlog"); 
+
+            if (blogId) {
+                document.getElementById("editTitle").value = localStorage.getItem("Blog" + blogId + "_title") || "";
+                document.getElementById("editDesc").value = localStorage.getItem("Blog" + blogId + "_desc") || "";
+                document.getElementById("editImgurl").value = localStorage.getItem("Blog" + blogId + "_imgurl") || "";
+            } else {
+                alert("No blog selected!");
+                window.location.href = "home.html"; 
+            }
+        };
+
+        function saveChanges() {
+            var blogId = localStorage.getItem("selectedBlog");
+            var newTitle = document.getElementById("editTitle").value;
+            var newDesc = document.getElementById("editDesc").value;
+            var newImgurl = document.getElementById("editImgurl").value;
+
+
+            if (newTitle.trim() === "" || newDesc.trim() === "" || newImgurl.trim()==="") {
+                alert("Title or description or Image url cannot be empty!");
+                return;
+            }
+            localStorage.setItem("Blog" + blogId + "_title", newTitle);
+            localStorage.setItem("Blog" + blogId + "_desc", newDesc);
+            localStorage.setItem("Blog" + blogId + "_imgurl", newImgurl);
+
+            alert("Blog updated successfully!");
+            window.location.href = "home.html"; 
+        }
+
+        function cancelEdit() {
+            window.location.href = "home.html"; 
+        }
+    </script>
+</body>
+</html>

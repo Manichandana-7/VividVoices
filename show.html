@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Blog Details</title>
+</head>
+<body>
+    <div>
+        <nav class="bg-sky-700 p-6 ">
+            <div class="flex justify-between items-center">
+                <h1 class="text-white text-4xl font-bold">VividVoices</h1>              
+                <ul class="flex gap-25 text-2xl text-white font-bold mr-20">
+                    <li><a href="editing.html">EDIT</a></li>
+                    <li><a href="home.html">BLOGS</a></li>
+                    <li><a href="add.html">ADD</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="flex justify-center items-center mt-20">
+    <div id="show" class="flex justify-center items-center w-1/2 h-1/2"></div>
+</div>
+
+    <script>
+        window.onload = function() {
+            var blogId = localStorage.getItem("selectedBlog");  
+
+            if (blogId) {
+                var title = localStorage.getItem("Blog" + blogId + "_title");
+                var desc = localStorage.getItem("Blog" + blogId + "_desc");
+                var viewC = localStorage.getItem("Blog" + blogId + "_count") || 0;
+                var imgurl = localStorage.getItem("Blog" + blogId + "_imgurl");
+                if (title && desc) {
+                    var blogContainer = document.getElementById("show");
+                    var blogEntry = document.createElement("div");
+                    blogEntry.className = "flex flex-col justify-center items-center p-6 border border-gray-200 rounded-lg shadow-md bg-sky-50 text-center";
+                    blogEntry.innerHTML = `
+                        <img src="${imgurl}" alt="Not Found" class="w-full h-80 object-cover mx-auto">
+                        <h4 class="text-3xl font-bold text-sky-800">${title}</h4>
+                        <p class="text-xl text-gray-800 mt-4">${desc}</p>
+                        <!-- <p class="mt-2 text-gray-500">Views: ${viewC}</p> -->
+                    `;
+                    blogContainer.appendChild(blogEntry);
+                } else {
+                    document.getElementById("show").innerHTML = "<p class='text-red-500 text-center mt-10'>Blog not found!</p>";
+                }
+            } else {
+                document.getElementById("show").innerHTML = "<p class='text-red-500 text-center mt-10'>No blog selected!</p>";
+            }
+        };
+    </script>
+</body>
+</html>
