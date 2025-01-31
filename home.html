@@ -18,7 +18,7 @@
             </div>
         </nav>
     </div>
-    <div id="blogContainer" class="grid lg:grid-cols-3 gap-8 m-8 sm:grid-cols-1 md:grid-cols-2">
+    <div id="blogContainer" class="grid lg:grid-cols-4 gap-8 m-8 sm:grid-cols-1 md:grid-cols-2">
         
     </div>
     <script>
@@ -38,8 +38,9 @@
                     var imgurl=localStorage.getItem("Blog"+i+"_imgurl");
                     blogEntry.className = "p-4 border border-gray-200 rounded-lg shadow-md bg-sky-50 text-center";
                     blogEntry.innerHTML = `
-                        <img src="${imgurl}" alt="Image Not Found" class="w-full h-60 object-cover mx-auto">
-                        <h1 class="text-3xl font-bold text-sky-800"><span>${title}</span></h1>
+                    <h1 class="text-3xl font-bold text-sky-800 p-1"><span>${title}</span></h1>
+                        <img src="${imgurl}" alt="Image Not Found" class="w-full h-60 object-cover mx-auto p-5 mb-3">
+                        
                         <!-- <p class="text-gray-600 mt-2"><span>${desc}</span></p> -->
                         <button onclick="viewBlog(${i})" class="px-5 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-500">View</button>
                         <button onclick="editBlog(${i})" class="px-5 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-500">edit</button>

@@ -20,7 +20,7 @@
         </nav>
     </div>
     <div class="flex justify-center items-center mt-20">
-    <div id="show" class="flex justify-center items-center w-1/2 h-1/2"></div>
+    <div id="show" class="flex justify-center items-center w-1/2 h-1/2 "></div>
 </div>
 
     <script>
@@ -37,9 +37,11 @@
                     var blogEntry = document.createElement("div");
                     blogEntry.className = "flex flex-col justify-center items-center p-6 border border-gray-200 rounded-lg shadow-md bg-sky-50 text-center";
                     blogEntry.innerHTML = `
-                        <img src="${imgurl}" alt="Not Found" class="w-full h-80 object-cover mx-auto">
-                        <h4 class="text-3xl font-bold text-sky-800">${title}</h4>
+                        <h1 class="text-3xl font-bold text-sky-800 p-1"><span>${title}</span></h1>
+                        <img src="${imgurl}" alt="Not Found" class="w-full h-auto object-cover mx-auto">
+                        
                         <p class="text-xl text-gray-800 mt-4">${desc}</p>
+                        <button type="button" onclick="closeBlog()" class="px-5 py-2 mt-5 bg-sky-600 text-white rounded-md hover:bg-sky-500">Close</button>
                         <!-- <p class="mt-2 text-gray-500">Views: ${viewC}</p> -->
                     `;
                     blogContainer.appendChild(blogEntry);
@@ -50,6 +52,9 @@
                 document.getElementById("show").innerHTML = "<p class='text-red-500 text-center mt-10'>No blog selected!</p>";
             }
         };
+        function closeBlog(){
+            window.location.href="home.html";
+        }
     </script>
 </body>
 </html>
