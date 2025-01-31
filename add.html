@@ -19,7 +19,7 @@
         </nav>
     </div>
     <div class="flex justify-center items-center m-10">
-        <form onsubmit="addBlog()" class="p-10 border border-gray-200 rounded-lg shadow-md bg-sky-50 space-y-5 w-1/2 h-1/2">
+        <form onsubmit="addBlog(event)" class="p-10 border border-gray-200 rounded-lg shadow-md bg-sky-50 space-y-5 w-1/2 h-1/2">
                 <h1 class="font-bold text-2xl text-center text-sky-800">ADDING BLOGS</h1>
                 <label for="title" class="block font-bold mb-2 text-sky-800">Title:</label>
                 <input type="text" placeholder="Enter the title" required id="title" class="border-1 rounded-md w-full p-2 bg-gray-50">
@@ -36,6 +36,7 @@
     <script>
         var count = parseInt(localStorage.getItem("blogCount")) || 0;
         function addBlog(event) {
+            event.preventDefault();
             count += 1; 
             var name = "Blog" + count;
             var title = document.getElementById("title").value;
@@ -46,7 +47,10 @@
             localStorage.setItem("blogCount", count);
             localStorage.setItem(name + "_count", 0);
             localStorage.setItem(name + "_imgurl", imgurl);
-            displayBlogs();
+            redirect();
+        }
+        function redirect(){
+            window.location.href="home.html";
         }
     </script>
 </body>
